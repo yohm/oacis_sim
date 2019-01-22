@@ -1,3 +1,5 @@
 *.py[cod]
 id_rsa.K*
+rccs-atd-openrc_v[23].sh
+PSWD*
 .DS_Store
