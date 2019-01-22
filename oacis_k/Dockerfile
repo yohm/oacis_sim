@@ -1,0 +1,33 @@
+###################################
+# OACIS Dockerfile for K-computer #
+###################################
+FROM oacis/oacis
+MAINTAINER "OACIS developers" <oacis-dev@googlegroups.com>
+
+ARG SOCKS5_SERVER=""
+ARG SOCKS5_USER=""
+ARG SOCKS5_PASSWD=""
+ENV SOCKS5_SERVER=${SOCKS5_SERVER}
+ENV SOCKS5_USER=${SOCKS5_USER}
+ENV SOCKS5_PASSWD=${SOCKS5_PASSWD}
+ARG KUSER="oacis"
+ENV KUSER=${KUSER}
+
+RUN apt-get -y install connect-proxy
+
+# put oacis_*.sh
+USER root
+COPY oacis_setup.sh mk_*.sh /home/oacis/
+RUN chown oacis:oacis /home/oacis/*.sh
+
+# put ssh private key of K-computer
+RUN mkdir /home/oacis/.ssh
+COPY id_rsa.K.pub /home/oacis/.ssh/authorized_keys
+RUN chown -R oacis:oacis /home/oacis/.ssh \
+    && chmod 700 /home/oacis/.ssh && chmod 600 /home/oacis/.ssh/authorized_keys
+
+# expose ssh port
+EXPOSE 22
+
+# start mongodb daemon and OACIS setup.
+CMD ["./oacis_setup.sh"]

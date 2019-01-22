@@ -1,0 +1,41 @@
+[INPUT]
+topfile = ../1_setup/top_all27_prot_lipid.rtf # topology file
+parfile = ../1_setup/par_all27_prot_lipid.prm # parameter file
+psffile = ../1_setup/ionize.psf               # protein structure file
+pdbfile = ../1_setup/ionize.pdb               # PDB file
+rstfile = ../4_equilibration/run.rst          # restart file
+ 
+[OUTPUT]
+dcdfile = run.dcd  # DCD trajectory file
+rstfile = run.rst  # restart file
+
+[ENERGY]
+electrostatic    = PME       # [CUTOFF,PME]
+switchdist       = 10.0      # switch distance
+cutoffdist       = 12.0      # cutoff distance
+pairlistdist     = 13.5      # pairlist distance
+pme_ngrid_x      = 72        # grid size_x in [PME]
+pme_ngrid_y      = 80        # grid size_y in [PME]
+pme_ngrid_z      = 72        # grid size_z in [PME]
+ 
+[DYNAMICS]
+integrator    = LEAP      # [LEAP,VVER]
+nsteps        = 500000    # number of MD steps
+timestep      = 0.002     # timestep (ps)
+eneout_period = 500       # energy output period
+crdout_period = 500       # coordinates output period
+rstout_period = 500000    # restart output period
+stoptr_period = 10        # remove translational and rotational motions period
+ 
+[CONSTRAINTS]
+rigid_bond    = YES       # constraints all bonds involving hydrogen
+ 
+[ENSEMBLE]
+ensemble      = NPT       # [NVE,NVT,NPT]
+tpcontrol     = LANGEVIN  # thermostat and barostat
+temperature   = 300.0     # initial temperature (K)
+pressure      = 1.0       # target pressure (atm)
+ 
+[BOUNDARY]
+type          = PBC       # [PBC,NOBC]
+

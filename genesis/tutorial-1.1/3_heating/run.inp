@@ -1,0 +1,53 @@
+[INPUT]
+topfile = ../1_setup/top_all27_prot_lipid.rtf # topology file
+parfile = ../1_setup/par_all27_prot_lipid.prm # parameter file
+psffile = ../1_setup/ionize.psf               # protein structure file
+pdbfile = ../1_setup/ionize.pdb               # PDB file
+reffile = ../1_setup/ionize.pdb               # Reference for restraints
+rstfile = ../2_minimization/run.rst           # restart file
+ 
+[OUTPUT]
+dcdfile = run.dcd  # DCD trajectory file
+rstfile = run.rst  # restart file
+
+[ENERGY]
+electrostatic    = PME       # [CUTOFF,PME]
+switchdist       = 10.0      # switch distance
+cutoffdist       = 12.0      # cutoff distance
+pairlistdist     = 13.5      # pairlist distance
+pme_ngrid_x      = 72        # grid size_x in [PME]
+pme_ngrid_y      = 80        # grid size_y in [PME]
+pme_ngrid_z      = 72        # grid size_z in [PME]
+ 
+[DYNAMICS]
+integrator     = LEAP      # [LEAP,VVER]
+nsteps         = 50000     # number of MD steps
+timestep       = 0.002     # timestep (ps)
+eneout_period  = 500       # energy output period
+crdout_period  = 500       # coordinates output period
+rstout_period  = 50000     # restart output period
+annealing      = YES       # simulated annealing
+anneal_period  = 500       # annealing period
+dtemperature   = 3         # temperature change at annealing (K)
+ 
+[CONSTRAINTS]
+rigid_bond     = YES       # constraints all bonds 
+                           # involving hydrogen
+ 
+[ENSEMBLE]
+ensemble       = NVT       # [NVE,NVT,NPT]
+tpcontrol      = LANGEVIN  # thermostat
+temperature    = 0.1       # initial temperature (K)
+ 
+[BOUNDARY]
+type           = PBC       # [PBC,NOBC]
+ 
+[SELECTION]
+group1        = an:CA | an:C | an:O | an:N # index of restraint group 1
+
+[RESTRAINTS]
+nfunctions     = 1     # number of restraints
+function1      = POSI  # [DIST,POSI,RMSD,ANGLE,DIHED] [MASS] kind of function 1
+constant1      = 10.0  # force constant(tot, [x,y,z]) for function 1
+select_index1  = 1     # restrained groups
+
