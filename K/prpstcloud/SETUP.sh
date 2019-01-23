@@ -1,5 +1,7 @@
 #!/bin/bash
-. rccs-atd-openrc_v2.sh
+if [ -z ${OS_USERNAME} ]; then
+  . rccs-atd-openrc_v2.sh
+fi
 
 ./os_create_server.sh
 sleep 5

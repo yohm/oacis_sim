@@ -3,7 +3,7 @@
 # $1 must be specified as K username
 
 if [ $# -ne 1 ]; then
-    echo "usage $0 K-username"
+    echo "usage: $0 K-username"
     exit 1
 fi
 U=$1
@@ -15,6 +15,8 @@ fi
 
 cat <<EOF >>/home/oacis/.ssh/config
 StrictHostKeyChecking no
+ForwardAgent yes
+Host K
   User $U
   HostName k.r-ccs.riken.jp
   $P

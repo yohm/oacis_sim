@@ -1,7 +1,9 @@
 #!/bin/bash
 
-eval `ssh-agent`
-ssh-add id_rsa.K
+if [ -f id_rsa.K ]; then
+    eval `ssh-agent`
+    ssh-add id_rsa.K
+fi
 
 docker run --name oacis_K --rm -p 127.0.0.1:3000:3000 -p 127.0.0.1:2222:22 -dt oacis_sim/oacis_k
 
