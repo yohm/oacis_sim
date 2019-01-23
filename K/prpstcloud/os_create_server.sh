@@ -10,7 +10,7 @@ if [ -z ${OS_USERNAME} ]; then
   . rccs-atd-openrc_v2.sh
 fi
 SRVNM=oacis_${OS_USERNAME}
-echo "VM server name is ${SRVNM}"
+echo "Target VM server name is ${SRVNM}"
 
 # create keypair as OS_USERNAME
 _K=`openstack --insecure keypair list | grep ${OS_USERNAME} | wc -l`
@@ -30,4 +30,5 @@ if [ ${_S} -lt 1 ]; then
   FIP=`openstack --insecure floating ip create external 2>&1 | grep ' name ' | awk '{print $4}'`
   openstack --insecure server add floating ip ${SRVNM} ${FIP}
   echo "Floating IP address ${FIP} assigned."
+  ssh-keygen -R ${FIP}
 fi

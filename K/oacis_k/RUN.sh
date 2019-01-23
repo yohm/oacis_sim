@@ -9,7 +9,7 @@ docker run --name oacis_K --rm -p 127.0.0.1:3000:3000 -p 127.0.0.1:2222:22 -dt o
 
 sleep 5
 ssh-keygen -R localhost
-ssh-keyscan -p 2222 -H localhost >> $HOME/.ssh/known_hosts
+#ssh-keyscan -p 2222 -H localhost >> $HOME/.ssh/known_hosts
 (ssh oacis@localhost -p 2222 -A /home/oacis/oacis_start.sh) &
 
 sleep 15
