@@ -1,10 +1,10 @@
 #!/bin/bash
 if [ "x$1" == "x-h" -o "x$1" == "x--help" ]; then
-    echo "$0: start oacis docker container"
-    echo "usage: $0 [-f] [-g] [-m]"
-    echo "  -f  start ffb docker container simultaneously"
-    echo "  -g  start genesis docker container simultaneously"
-    echo "  -m  start mdacp docker container simultaneously"
+    echo "$(basename $0): start oacis docker container (from oacis_sim/oacis_pc)"
+    echo "usage: $(basename $0) [-f] [-g] [-m]"
+    echo "  -f  start ffb docker container (from oacis_sim/ffb) simultaneously"
+    echo "  -g  start genesis docker container (from oacis_sim/genesis) simultaneously"
+    echo "  -m  start mdacp docker container (from oacis_sim/mdacp) simultaneously"
     exit 0
 fi
 
@@ -16,7 +16,7 @@ while getopts fgm opt; do
 	"f" ) _F="Y" ;;
 	"g" ) _G="Y" ;;
 	"m" ) _M="Y" ;;
-	* ) echo "usage: $0 [-f] [-g] [-m]"
+	* ) echo "usage: $(basename $0) [-f] [-g] [-m]"
 	    exit 1 ;;
     esac
 done

@@ -1,4 +1,4 @@
-work_dir = "/home/oacis/mdacp"
+base_dir = "/home/oacis"
 
 localhost = Host.find_by_name("localhost")
 mdacp = Host.find_by_name("mdacp")
@@ -6,7 +6,7 @@ mdacp = Host.find_by_name("mdacp")
 # simulator
 sim_params = {
   name: "MDACP_Langevin",
-  command: "python #{work_dir}/bin/run.py",
+  command: "python #{base_dir}/mdacp/run.py",
   support_input_json: false,
   support_omp: true,
   support_mpi: true,
@@ -31,7 +31,7 @@ end
 azr_params = {
   name: "make_plot",
   type: "on_run",
-  command: "python #{work_dir}/bin/plot_figs.py _input/timeseries.dat",
+  command: "python #{base_dir}/mdacp/plot_figs.py _input/timeseries.dat",
   support_input_json: true,
   support_omp: false,
   support_mpi: false,

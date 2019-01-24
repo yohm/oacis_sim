@@ -14,10 +14,10 @@ RUN apt-get -y install python-matplotlib
 COPY oacis_add_host.sh /home/oacis/
 RUN chown oacis:oacis /home/oacis/oacis_add_host.sh && chmod +x /home/oacis/oacis_add_host.sh
 
-RUN mkdir -p /home/oacis/mdacp/bin && chown -R oacis:oacis /home/oacis/mdacp
+RUN mkdir -p /home/oacis/mdacp && chown -R oacis:oacis /home/oacis/mdacp
 COPY register_mdacp.rb /home/oacis/
-COPY mdacp/bin/plot_figs.py /home/oacis/mdacp/bin
-RUN chown oacis:oacis /home/oacis/register_mdacp.rb /home/oacis/mdacp/bin/plot_figs.py
+COPY mdacp/plot_figs.py /home/oacis/mdacp/
+RUN chown oacis:oacis /home/oacis/register_mdacp.rb /home/oacis/mdacp/plot_figs.py
 
 # setup ssh
 RUN mkdir -p /home/oacis/.ssh \

@@ -9,9 +9,9 @@ MAINTAINER "OACIS developers" <oacis-dev@googlegroups.com>
 
 # Install mdacp
 USER root
-RUN mkdir -p /home/oacis/mdacp/bin
-COPY bin/* /home/oacis/mdacp/bin/
-RUN chmod +x /home/oacis/mdacp/bin/* \
+RUN mkdir -p /home/oacis/mdacp
+COPY bin/* /home/oacis/mdacp/
+RUN chmod +x /home/oacis/mdacp/* \
  && chown -R oacis:oacis /home/oacis/mdacp \
- && echo "export PATH=\$PATH:/home/oacis/mdacp/bin" >> /home/oacis/.bash_profile
+ && echo "export PATH=\$PATH:/home/oacis/mdacp" >> /home/oacis/.bash_profile
 
