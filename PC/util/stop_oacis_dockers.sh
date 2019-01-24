@@ -1,4 +1,11 @@
 #!/bin/bash
+if [ "x$1" == "x-h" -o "x$1" == "x--help" ]; then
+    echo "$0: stop all docker containers named oacis_sim/*"
+    echo "usage: $0 [-d | -D]"
+    echo "  -d  delete docker containers"
+    echo "  -D  delete docker images"
+    exit 0
+fi
 DC="N"
 DI="N"
 if [ "x$1" == "x-d" ]; then
@@ -6,6 +13,10 @@ if [ "x$1" == "x-d" ]; then
 elif [ "x$1" == "x-D" ]; then
     DC="Y"
     DI="Y"
+elif [ ! -z $1 ]; then
+    echo "$0: illegal option -- $1"
+    echo "usage: $0 [-d | -D]"
+    exit 1
 fi
 
 docker ps | grep oacis_sim | while read line; do

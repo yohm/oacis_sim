@@ -11,7 +11,7 @@ EXPOSE 22
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends wget ca-certificates wget \
- openssh-server git openmpi-bin ruby2.3
+ openssh-server git openmpi-bin python python-matplotlib ruby2.3
 
 # Install xsub
 RUN useradd -ms /bin/bash oacis

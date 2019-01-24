@@ -5,7 +5,7 @@ FROM oacis_sim/xsub
 MAINTAINER "OACIS developers" <oacis-dev@googlegroups.com>
 
 RUN apt-get update \
-&& apt-get install -y libgfortran3 libblas3 liblapack3 libgomp1
+ && apt-get install -y libgfortran3 libblas3 liblapack3 libgomp1
 
 # Install GENESIS and Tutorial
 USER root

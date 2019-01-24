@@ -4,7 +4,8 @@
 FROM oacis_sim/xsub
 MAINTAINER "OACIS developers" <oacis-dev@googlegroups.com>
 
-RUN apt-get install -y python3-matplotlib
+#RUN apt-get update \
+# && apt-get install -y python-matplotlib
 
 # Install mdacp
 USER root

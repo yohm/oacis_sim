@@ -10,6 +10,15 @@ ARG https_proxy=""
 # install matplotlib for analizer
 RUN apt-get -y install python-matplotlib
 
+# copy misc files
+COPY oacis_add_host.sh /home/oacis/
+RUN chown oacis:oacis /home/oacis/oacis_add_host.sh && chmod +x /home/oacis/oacis_add_host.sh
+
+RUN mkdir -p /home/oacis/mdacp/bin && chown -R oacis:oacis /home/oacis/mdacp
+COPY register_mdacp.rb /home/oacis/
+COPY mdacp/bin/plot_figs.py /home/oacis/mdacp/bin
+RUN chown oacis:oacis /home/oacis/register_mdacp.rb /home/oacis/mdacp/bin/plot_figs.py
+
 # setup ssh
 RUN mkdir -p /home/oacis/.ssh \
  && chown oacis:oacis /home/oacis/.ssh; chmod 700 /home/oacis/.ssh

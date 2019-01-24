@@ -5,7 +5,7 @@ FROM oacis_sim/xsub
 MAINTAINER "OACIS developers" <oacis-dev@googlegroups.com>
 
 RUN apt-get update \
-&& apt-get install -y libgfortran3
+ && apt-get install -y libgfortran3
 
 # Install FFB
 USER root
