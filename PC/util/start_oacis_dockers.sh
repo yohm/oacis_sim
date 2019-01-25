@@ -96,4 +96,17 @@ else
     echo "- oacis docker container has already started."
 fi
 
+# add host and simulator information
+# - ffb
+# - genesis
+# - mdacp
+if [ ${_M} == "Y" ]; then
+    Y=`docker ps | grep 'oacis_sim/mdacp' | wc -l`
+    if [ ${Y} -lt 1 ]; then
+	echo "= mdacp docker container not runnning."
+    else
+	(cd oacis_pc; ./setup_mdacp.sh)
+    fi
+fi
+
 exit 0
