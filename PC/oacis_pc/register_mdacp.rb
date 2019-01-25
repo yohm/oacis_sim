@@ -14,7 +14,7 @@ sim_params = {
     {key: "density", type: "Float", default: 0.7, description: ""}, 
     {key: "temperature", type: "Float", default: 0.9, description: "aimed temperature of the heat bath"}, 
     {key: "length", type: "Float", default: 20.0, description: ""}, 
-    {key: "total_loop", type: "Integer", default: 50000, description: ""}
+    {key: "total_loop", type: "Integer", default: 5000, description: ""}
   ],
   description: "MDACP Langevin heat bath",
   executable_on: [ mdacp ]
