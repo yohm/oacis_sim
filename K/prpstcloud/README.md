@@ -3,7 +3,7 @@
 ## 事前準備
 PythonおよびOpenStack clientのインストールが必要です。
 
-OpenStack clientは、以下のようにインストールします。
+OpenStack clientは、Python付属のpipコマンドで、以下のようにインストールします。
 ```
 pip install python-openstackclient
 ```

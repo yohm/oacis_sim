@@ -28,23 +28,4 @@ else
 end
 
 # analyzer
-azr_params = {
-  name: "make_plot",
-  type: "on_run",
-  command: "python #{base_dir}/mdacp/plot_figs.py _input/timeseries.dat",
-  support_input_json: true,
-  support_omp: false,
-  support_mpi: false,
-  files_to_copy: "timeseries.dat",
-  auto_run: "first_run_only",
-  executable_on: [ localhost ],
-  auto_run_submitted_to: localhost
-}
-
-azr_name = azr_params[:name]
-sim = Simulator.find_by_name(sim_name)
-if sim.analyzers.where(name: azr_name).exists?
-  puts "analyzer #{azr_name} already exists"
-else
-  sim.analyzers.create!(azr_params)
-end
+# ... erased ...

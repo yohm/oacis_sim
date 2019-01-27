@@ -6,14 +6,12 @@ OACISも各シミュレータも、それぞれPC上のDockerコンテナ上で�
 
 ## 事前準備
 
-実行するPCでは、DockerCEがインストールされている必要があります。
+実行するPCには、Dockerがインストールされている必要があります。
 Docker Toolbox(Windows 8.1以前、またはWindows 10 Home環境)用の設定は含まれません。
-
-尚、docker-composeは不要です。
 
 ## 実行方法
 
-このディレクトリ(PC)配下の`util/start_oacis_dockers.sh`を実行すると、
+このディレクトリ(PC/)配下の`util/start_oacis_dockers.sh`を実行すると、
 必要なDockerイメージが作成され、コンテナが起動します。
 
 ```
@@ -23,8 +21,6 @@ usage: start_oacis_dockers.sh [-f] [-g] [-m]
   -f  start ffb docker container (from oacis_sim/ffb) simultaneously
   -g  start genesis docker container (from oacis_sim/genesis) simultaneously
   -m  start mdacp docker container (from oacis_sim/mdacp) simultaneously
-
-$ util/start_oacis_dockers.sh
 ```
 
 オプションなしでこのコマンドを実行すると、OACISのDockerコンテナが起動します。
