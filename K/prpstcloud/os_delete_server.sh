@@ -5,9 +5,16 @@ if [ ! -z ${https_proxy} ]; then
     unset https_proxy
 fi
 
-# source rccs-atd-openrc_v2.sh if need, and get the VM server name
+# source rccs-atd-openrc_v{2|3}.sh if need, and get the VM server name
 if [ -z ${OS_USERNAME} ]; then
-    . rccs-atd-openrc_v2.sh
+    if [ -f rccs-atd-openrc_v2.sh ]; then
+	. rccs-atd-openrc_v2.sh
+    elif [ -f rccs-atd-openrc_v3.sh ]; then
+	. rccs-atd-openrc_v3.sh
+    else
+	echo "both rccs-atd-openrc_v2.sh and rccs-atd-openrc_v3.sh does not exist, exit."
+	exit 1
+    fi
 fi
 SRVNM=oacis_${OS_USERNAME}
 
@@ -17,7 +24,7 @@ FIP=`openstack --insecure server list | grep ${SRVNM} | awk '{print $9}' | head 
 # kill port forwarding ssh
 if [ ! -z ${FIP} ]; then
     _P=`ps ax | grep ssh | grep ${FIP} | awk '{print $1}'`
-    if [ ! -z ${_P} ]; then
+    if [[ ! -z ${_P} ]]; then
 	kill ${_P}
     fi
 fi
@@ -29,3 +36,4 @@ if [ ! -z ${FIP} ]; then
 fi
 openstack --insecure keypair delete ${OS_USERNAME}
 
+exit $?

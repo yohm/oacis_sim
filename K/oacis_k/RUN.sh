@@ -16,7 +16,7 @@ if [ ${_A} -lt 1 ]; then
     if [ $? != 0 ]; then
 	exit 1
     fi
-    echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK=}"
+    echo "invoked ssh-agent: SSH_AUTH_SOCK=${SSH_AUTH_SOCK=}"
 fi
 
 # create/run oacis_K docker container

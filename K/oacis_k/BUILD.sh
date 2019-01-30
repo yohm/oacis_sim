@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# copy id_rsa.K.pub into the cwd
+# get public key file as id_rsa.K.pub
 if [ ! -f id_rsa.K.pub ]; then
     read -p "specify the public key file of K: " kf
     if [ "x${kf}" == "x" -o ! -f ${kf} ]; then
