@@ -13,7 +13,7 @@ pip install python-openstackclient
  - 秘密鍵: id_rsa.K
  - 公開鍵: id_rsa.K.pub
 
-## セットアップ方法
+## 利用方法
 1. 京プリポスト向けクラウド環境用のVPNに接続します。
 
 2. Webブラウザで https://10.9.255.25 にアクセスし、
@@ -32,7 +32,7 @@ Please enter your OpenStack Password for project rccs-atd as user <ユーザ名>
 
   ここで、京プリポスト向けクラウド環境用VPNのパスワードを入力します。
 
-5. "./setup.sh"を実行します。
+5. "./os_setup.sh"を実行します。
 京プリポスト向けクラウド環境のOpenStackで、以下のVMがプロビジョニングされます。
  - OS: Ubuntu16.04_LTS
  - Flavor: A2.small
