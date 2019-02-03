@@ -29,7 +29,7 @@ fi
 # create/run oacis_K docker container
 docker run --name oacis_K --rm -p ${HOSTPREFX}3000:3000 -p ${HOSTPREFX}2222:22 \
        -dt oacis_sim/oacis_k
-sleep 5
+sleep 10
 
 # remove ${TARGHOST} entry from knownhosts
 ssh-keygen -R ${TARGHOST}
