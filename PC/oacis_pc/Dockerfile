@@ -11,8 +11,9 @@ ARG https_proxy=""
 RUN apt-get -y install python-matplotlib
 
 # copy misc files
-COPY oacis_add_host.sh /home/oacis/
-RUN chown oacis:oacis /home/oacis/oacis_add_host.sh && chmod +x /home/oacis/oacis_add_host.sh
+COPY _oacis_add_host.sh /home/oacis/
+RUN tr -d \\r < /home/oacis/_oacis_add_host.sh > /home/oacis/oacis_add_host.sh \
+ && chown oacis:oacis /home/oacis/oacis_add_host.sh && chmod +x /home/oacis/oacis_add_host.sh
 
 RUN mkdir -p /home/oacis/mdacp && chown -R oacis:oacis /home/oacis/mdacp
 COPY register_mdacp.rb /home/oacis/mdacp
