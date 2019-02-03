@@ -17,8 +17,11 @@ RUN apt-get -y install connect-proxy
 
 # put oacis_*.sh
 USER root
-COPY oacis_setup.sh mk_*.sh /home/oacis/
-RUN chown oacis:oacis /home/oacis/*.sh
+COPY _oacis_setup.sh _mk_*.sh /home/oacis/
+RUN tr -d \\r < /home/oacis/_oacis_setup.sh > /home/oacis/oacis_setup.sh \
+ && tr -d \\r < /home/oacis/_mk_oacis_start.sh > /home/oacis/mk_oacis_start.sh \
+ && tr -d \\r < /home/oacis/_mk_ssh_config.sh > /home/oacis/mk_ssh_config.sh \
+ && chown oacis:oacis /home/oacis/*.sh && chmod +x /home/oacis/*.sh
 
 # put ssh private key of K-computer
 RUN mkdir /home/oacis/.ssh
