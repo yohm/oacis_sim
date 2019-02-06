@@ -21,5 +21,18 @@ else
     echo "refer existed ssh-agent: SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
 fi
 
+# adjust .ssh/config
+if [ -d ${HOME}/.ssh ]; then
+	if [ -f ${HOME}/.ssh/config ]; then
+		xs=`grep StrictHostKeyChecking ${HOME}/.ssh/config | wc -l`
+		if [ ${xs} -lt 1 ]; then
+			echo 'StrictHostKeyChecking no' >> ${HOME}/.ssh/config
+		fi
+	else
+		echo 'StrictHostKeyChecking no' > ${HOME}/.ssh/config
+		chmod go-rwx ${HOME}/.ssh/config
+	fi
+fi
+
 # and exec setup_oacis_os.sh
 exec ./setup_oacis_os.sh

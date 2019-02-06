@@ -16,7 +16,7 @@ if [ -z ${OS_USERNAME} ]; then
 	exit 1
     fi
 fi
-SRVNM=oacis_${OS_USERNAME}
+SRVNM=oacis-${OS_USERNAME}
 echo "Target VM server name is ${SRVNM}"
 
 # get floating IP address
@@ -53,9 +53,10 @@ else
 fi
 
 # copy install_docker_on_ubuntu.sh to the VM server
-scp install_docker_on_ubuntu.sh ubuntu@${FIP}:./
+scp _install_docker_on_ubuntu.sh ubuntu@${FIP}:./
 
 # exec install_docker_on_ubuntu.sh on the VM server
+ssh -n -T -A ubuntu@${FIP} 'tr -d \\r < _install_docker_on_ubuntu.sh > install_docker_on_ubuntu.sh && chmod +x install_docker_on_ubuntu.sh'
 ssh -A ubuntu@${FIP} ./install_docker_on_ubuntu.sh
 
 # kill ssh-agent if invoked

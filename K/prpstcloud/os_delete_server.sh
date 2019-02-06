@@ -16,12 +16,12 @@ if [ -z ${OS_USERNAME} ]; then
 	exit 1
     fi
 fi
-SRVNM=oacis_${OS_USERNAME}
+SRVNM=oacis-${OS_USERNAME}
 
 # get floating IP address
 FIP=`openstack --insecure server list | grep ${SRVNM} | awk '{print $9}' | head -1`
 
-# kill port forwarding ssh
+# kill port forwarding ssh (may not work on Windows...)
 if [ ! -z ${FIP} ]; then
     _P=`ps ax | grep ssh | grep ${FIP} | awk '{print $1}'`
     if [[ ! -z ${_P} ]]; then

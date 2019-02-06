@@ -16,7 +16,7 @@ if [ -z ${OS_USERNAME} ]; then
 	exit 1
     fi
 fi
-SRVNM=oacis_${OS_USERNAME}
+SRVNM=oacis-${OS_USERNAME}
 echo "Target VM server name is ${SRVNM}"
 
 # get public key file as id_rsa.K.pub
