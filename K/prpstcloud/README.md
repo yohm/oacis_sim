@@ -41,7 +41,7 @@ Please enter your OpenStack Password for project rccs-atd as user <ユーザ名>
   その後、プロビジョニングされたVM上にDocker CEがインストールされ、
   ここでoacis_dockerのコンテナ(oacis_K)が実行されます。
 
-  尚、"setup.sh"実行の途中、VMへのsshログインのために
+  尚、"os_setup.sh"実行の途中、VMへのsshログインのために
   京コンピュータログイン用のssh秘密鍵のパスフレーズが聞かれます。ただし、事前にssh-agentに
   京の秘密鍵(id_rsa.K)を登録している場合は、パスフレーズは聞かれません。
 

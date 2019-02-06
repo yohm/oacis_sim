@@ -9,6 +9,8 @@ if [ ! -d ${HOME}/.ssh ]; then
 	mkdir ${HOME}/.ssh
 	chmod 700 ${HOME}/.ssh
 fi
+echo 'StrictHostKeyChecking no' >> ${HOME}/.ssh/config
+chmod go-rwx ${HOME}/.ssh/config
 ssh-keygen -R ${TARGHOST}
 
 chmod go-rwx id_rsa_oacis
