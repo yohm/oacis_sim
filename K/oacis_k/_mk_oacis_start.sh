@@ -18,7 +18,7 @@ $S
 cd /home/oacis/oacis
 if [ "\$(mongo oacis_development --eval 'printjson(db.hosts.count({"name": "K"}));' | tail -1 | tr -d '\r')" == "0" ]
 then
-  mongo oacis_development --eval 'db.hosts.insert({"status" : "enabled", "port" : 22, "max_num_jobs" : 10, "polling_interval" : 10, "min_mpi_procs" : 1, "max_mpi_procs" : 64, "min_omp_threads" : 1, "max_omp_threads" : 16, "name" : "K", "hostname" : "K", "user" : "${KUSER}"})'
+  mongo oacis_development --eval 'db.hosts.insert({"status" : "enabled", "port" : 22, "max_num_jobs" : 10, "polling_interval" : 10, "min_mpi_procs" : 1, "max_mpi_procs" : 64, "min_omp_threads" : 1, "max_omp_threads" : 8, "name" : "K", "hostname" : "K", "user" : "${KUSER}"})'
 fi
 bundle exec rake daemon:restart
 #wait forever

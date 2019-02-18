@@ -27,10 +27,15 @@ RUN tr -d \\r < /home/oacis/_oacis_setup.sh > /home/oacis/oacis_setup.sh \
 RUN mkdir /home/oacis/.ssh
 COPY id_rsa.K.pub /home/oacis/.ssh/authorized_keys
 RUN chown -R oacis:oacis /home/oacis/.ssh \
-    && chmod 700 /home/oacis/.ssh && chmod 600 /home/oacis/.ssh/authorized_keys
+ && chmod 700 /home/oacis/.ssh && chmod 600 /home/oacis/.ssh/authorized_keys
 
 # expose ssh port
 EXPOSE 22
+
+# put setup_xsub_k.sh
+COPY _setup_xsub_k.sh /home/oacis/
+RUN tr -d \\r < /home/oacis/_setup_xsub_k.sh > /home/oacis/setup_xsub_k.sh \
+ && chown oacis:oacis /home/oacis/setup_xsub_k.sh
 
 # start mongodb daemon and OACIS setup.
 CMD ["./oacis_setup.sh"]

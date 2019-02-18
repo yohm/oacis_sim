@@ -2,9 +2,10 @@
 
 HOSTPREFX="127.0.0.1:"
 TARGHOST="localhost"
+TARGPORT=2222
 if [[ ! -z ${DOCKER_MACHINE_NAME} ]]; then
-	HOSTPREFX=""
-	TARGHOST=`docker-machine ip`
+    HOSTPREFX=""
+    TARGHOST=`docker-machine ip`
 fi
 
 # invoke ssh-agen locally, and add private key of K
@@ -27,17 +28,21 @@ if [ ${_A} -lt 1 ]; then
 fi
 
 # create/run oacis_K docker container
-docker run --name oacis_K --rm -p ${HOSTPREFX}3000:3000 -p ${HOSTPREFX}2222:22 \
-       -dt oacis_sim/oacis_k
+docker run --name oacis_K --rm -p ${HOSTPREFX}3000:3000 \
+       -p ${HOSTPREFX}${TARGPORT}:22 -dt oacis_sim/oacis_k
 sleep 10
 
 # remove ${TARGHOST} entry from knownhosts
 ssh-keygen -R ${TARGHOST}
-#ssh-keyscan -p 2222 -H ${TARGHOST} >> $HOME/.ssh/known_hosts
+#ssh-keyscan -p ${TARGPORT} -H ${TARGHOST} >> $HOME/.ssh/known_hosts
+
+# setup xsub on K
+ssh oacis@${TARGHOST} -p ${TARGPORT} -A scp /home/oacis/setup_xsub_k.sh K:./
+ssh oacis@${TARGHOST} -p ${TARGPORT} -A ssh K "/bin/bash ./setup_xsub_k.sh"
 
 # start oacis on oacis_K via ssh with ssh-agent
 echo "run oacis_start.sh on ${TARGHOST}"
-(ssh oacis@${TARGHOST} -p 2222 -A /home/oacis/oacis_start.sh) &
+(ssh oacis@${TARGHOST} -p ${TARGPORT} -A /home/oacis/oacis_start.sh) &
 sleep 15
 echo
 

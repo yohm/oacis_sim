@@ -66,6 +66,7 @@ scp $src/BUILD.sh ubuntu@${FIP}:./oacis_k/_BUILD.sh
 scp $src/RUN.sh ubuntu@${FIP}:./oacis_k/_RUN.sh
 scp $src/Dockerfile \
     $src/_mk_oacis_start.sh $src/_mk_ssh_config.sh $src/_oacis_setup.sh \
+    $src/_setup_xsub_k.sh \
     id_rsa.K.pub ubuntu@${FIP}:./oacis_k/
 
 # copy install_oacis_on_docker.sh to the VM server
