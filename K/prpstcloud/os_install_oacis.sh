@@ -87,7 +87,19 @@ ssh -n -T -A ubuntu@${FIP} ./install_oacis_on_docker.sh
 
 # exec start_oacis_on_docker.sh on the VM server
 ssh -n -T -A ubuntu@${FIP} ./start_oacis_on_docker.sh 2>&1 > start_oacis.log &
-sleep 15
+sleep 5
+
+check_submitter() {
+  while read i; do
+    echo $i | grep -q "JobSubmitterWorker started"
+    if [ $? = "0" ]; then
+      echo "OACIS started."
+      killall tail
+    fi
+  done
+}
+
+tail -n 0 -f start_oacis.log | check_submitter
 
 # kill ssh-agent if invoked
 #if [ ${_A} -lt 1 ]; then
