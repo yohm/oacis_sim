@@ -9,7 +9,7 @@ OACISも各シミュレータも、それぞれPC上のDockerコンテナ上で�
 実行するPCには、Dockerがインストールされている必要があります。
 Docker Toolbox(Windows 8.1以前、またはWindows 10 Home環境)用の設定は含まれません。
 
-## 実行方法
+## 利用方法
 
 このディレクトリ(PC/)配下の`util/start_oacis_dockers.sh`を実行すると、
 必要なDockerイメージが作成され、コンテナが起動します。

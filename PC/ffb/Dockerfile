@@ -10,8 +10,13 @@ RUN apt-get update \
 # Install FFB
 USER root
 RUN mkdir -p /home/oacis/ffb/bin
-COPY bin/les3* /home/oacis/ffb/bin/
-RUN chmod +x /home/oacis/ffb/bin/les3* \
+COPY bin/* /home/oacis/ffb/bin/
+RUN chmod +x /home/oacis/ffb/bin/* \
  && chown -R oacis:oacis /home/oacis/ffb \
  && echo "export PATH=\$PATH:/home/oacis/ffb/bin" >> /home/oacis/.bash_profile
+COPY data.tgz /home/oacis/ffb/
+WORKDIR /home/oacis/ffb
+RUN tar xvfz data.tgz \
+ && chown -R oacis:oacis data tmpl \
+ && rm -f data.tgz
 
