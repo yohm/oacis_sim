@@ -14,9 +14,9 @@ COPY bin/* /home/oacis/ffb/bin/
 RUN chmod +x /home/oacis/ffb/bin/* \
  && chown -R oacis:oacis /home/oacis/ffb \
  && echo "export PATH=\$PATH:/home/oacis/ffb/bin" >> /home/oacis/.bash_profile
-COPY data.tgz /home/oacis/ffb/
+COPY data_tmpl.tgz /home/oacis/ffb/
 WORKDIR /home/oacis/ffb
-RUN tar xvfz data.tgz \
+RUN tar xvfz data_tmpl.tgz \
  && chown -R oacis:oacis data tmpl \
- && rm -f data.tgz
+ && rm -f data_tmpl.tgz
 
