@@ -126,7 +126,7 @@ if [ ${_M} == "Y" ]; then
     fi
 fi
 
-echo "--- system ready ---"
+echo "+ invoking web browser ..."
 url=http://localhost:3000/
 case `uname` in
     Linux  ) xdg-open ${url} ;;

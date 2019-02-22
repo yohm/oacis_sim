@@ -7,9 +7,6 @@ MAINTAINER "OACIS developers" <oacis-dev@googlegroups.com>
 ARG http_proxy=""
 ARG https_proxy=""
 
-# install matplotlib for analizer
-RUN apt-get -y install python-matplotlib
-
 # copy misc files
 COPY _oacis_add_host.sh /home/oacis/
 RUN tr -d \\r < /home/oacis/_oacis_add_host.sh > /home/oacis/oacis_add_host.sh \
@@ -23,8 +20,7 @@ RUN chown oacis:oacis /home/oacis/ffb/register_ffb.rb
 # mdacp
 RUN mkdir -p /home/oacis/mdacp && chown -R oacis:oacis /home/oacis/mdacp
 COPY register_mdacp.rb /home/oacis/mdacp
-COPY mdacp/plot_figs.py /home/oacis/mdacp/
-RUN chown oacis:oacis /home/oacis/mdacp/register_mdacp.rb /home/oacis/mdacp/plot_figs.py
+RUN chown oacis:oacis /home/oacis/mdacp/register_mdacp.rb
 
 # setup ssh
 RUN mkdir -p /home/oacis/.ssh \
