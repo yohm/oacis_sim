@@ -1,22 +1,29 @@
 #!/bin/bash
 if [ "x$1" == "x-h" -o "x$1" == "x--help" ]; then
     echo "$(basename $0): start oacis docker container (from oacis_sim/oacis_pc)"
-    echo "usage: $(basename $0) [-f] [-g] [-m]"
-    echo "  -f  start ffb docker container (from oacis_sim/ffb) simultaneously"
-    echo "  -g  start genesis docker container (from oacis_sim/genesis) simultaneously"
-    echo "  -m  start mdacp docker container (from oacis_sim/mdacp) simultaneously"
+    echo "usage: $(basename $0) [-f|--ffb] [-g|--genesis] [-m|--mdacp]"
+    echo " -f --ffb     start ffb docker container (from oacis_sim/ffb) simultaneously"
+    echo " -g --genesis start genesis docker container (from oacis_sim/genesis) simultaneously"
+    echo " -m --mdacp   start mdacp docker container (from oacis_sim/mdacp) simultaneously"
     exit 0
 fi
 
 _F="N"
 _G="N"
 _M="N"
-while getopts fgm opt; do
+while getopts fgm-: opt; do
     case ${opt} in
 	"f" ) _F="Y" ;;
 	"g" ) _G="Y" ;;
 	"m" ) _M="Y" ;;
-	* ) echo "usage: $(basename $0) [-f] [-g] [-m]"
+	"-" )
+	    case "${OPTARG}" in
+		"ffb" ) _F="Y" ;;
+		"genesis" ) _G="Y" ;;
+		"mdacp" ) _M="Y" ;;
+	    esac
+	    ;;
+	* ) echo "usage: $(basename $0) [-f|--ffb] [-g|--genesis] [-m|--mdacp]"
 	    exit 1 ;;
     esac
 done
@@ -98,7 +105,17 @@ fi
 
 # add host and simulator information
 # - ffb
+if [ ${_F} == "Y" ]; then
+    Y=`docker ps | grep 'oacis_sim/ffb' | wc -l`
+    if [ ${Y} -lt 1 ]; then
+	echo "= ffb docker container not runnning."
+    else
+	(cd oacis_pc; ./setup_ffb.sh)
+    fi
+fi
+
 # - genesis
+
 # - mdacp
 if [ ${_M} == "Y" ]; then
     Y=`docker ps | grep 'oacis_sim/mdacp' | wc -l`
@@ -108,5 +125,18 @@ if [ ${_M} == "Y" ]; then
 	(cd oacis_pc; ./setup_mdacp.sh)
     fi
 fi
+
+echo "--- system standby ---"
+url=http://localhost:3000/
+case `uname` in
+    "Linux" ) xdg-open ${url} ;;
+    "Darwin" ) open ${url} ;;
+    MINGW* )
+	if [[ ! -z ${DOCKER_MACHINE_NAME} ]]; then
+	    url=http://`docker-machine ip`:3000/
+	fi
+	start ${url}
+	;;
+esac
 
 exit 0

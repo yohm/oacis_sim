@@ -15,6 +15,12 @@ COPY _oacis_add_host.sh /home/oacis/
 RUN tr -d \\r < /home/oacis/_oacis_add_host.sh > /home/oacis/oacis_add_host.sh \
  && chown oacis:oacis /home/oacis/oacis_add_host.sh && chmod +x /home/oacis/oacis_add_host.sh
 
+# ffb
+RUN mkdir -p /home/oacis/ffb && chown -R oacis:oacis /home/oacis/ffb
+COPY register_ffb.rb /home/oacis/ffb
+RUN chown oacis:oacis /home/oacis/ffb/register_ffb.rb
+
+# mdacp
 RUN mkdir -p /home/oacis/mdacp && chown -R oacis:oacis /home/oacis/mdacp
 COPY register_mdacp.rb /home/oacis/mdacp
 COPY mdacp/plot_figs.py /home/oacis/mdacp/

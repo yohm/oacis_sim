@@ -11,7 +11,7 @@ if [ ! -d ${HOME}/.ssh ]; then
 fi
 echo 'StrictHostKeyChecking no' >> ${HOME}/.ssh/config
 chmod go-rwx ${HOME}/.ssh/config
-ssh-keygen -R ${TARGHOST}
+ssh-keygen -R ${TARGHOST}:2222
 
 chmod go-rwx id_rsa_oacis
 

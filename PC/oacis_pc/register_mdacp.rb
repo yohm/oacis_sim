@@ -1,6 +1,5 @@
 base_dir = "/home/oacis"
 
-localhost = Host.find_by_name("localhost")
 mdacp = Host.find_by_name("mdacp")
 
 # simulator
@@ -28,4 +27,4 @@ else
 end
 
 # analyzer
-# ... erased ...
+

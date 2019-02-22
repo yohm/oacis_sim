@@ -12,7 +12,7 @@ import json
 #----------------------------------------------------------------------
 # main routine
 if __name__ == '__main__':
-    ffboutfn = 'output.txt'
+    ffboutfn = 'les3x.log.P0001'
     ffbrjfn = '_output.json'
     if len(sys.argv) > 1:
         ffboutfn = sys.argv[1]
@@ -59,6 +59,11 @@ if __name__ == '__main__':
         sys.stderr.write('ERR: can not output json file: %s\n' % ffbrjfn)
         sys.exit(3)
     fout.close()
+
+    # clean-up
+    os.system("rm -f *.sh *.py *.pyc")
+    os.system("rm -f les3x.mpi PARMLES3X.tmpl")
+    os.system("rm -f BOUN.* MESH.*")
 
     sys.exit(0)
 

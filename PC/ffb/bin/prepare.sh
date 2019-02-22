@@ -4,11 +4,11 @@ _IN="_input.json"
 if [ ! "x$1" == "x" ]; then
   _IN=$1
 fi
-_MD=`awk -F':' '/MESHDV/{print $2}' ${_IN} | sed -e 's/,//g'`
+_MD=`cat ${_IN} | python -m json.tool | awk -F':' '/MESHDV/{print $2}' | sed -e 's/,//g' -e 's/ //g'`
 if [ "x${_MD}" == "x" ]; then
   _MD=1
 fi
-_MS=`awk -F':' '/MESHSZ/{print $2}' ${_IN} | sed -e 's/,//g'`
+_MS=`cat ${_IN} | python -m json.tool | awk -F':' '/MESHSZ/{print $2}' | sed -e 's/,//g' -e 's/ //g'`
 if [ "x${_MS}" == "x" ]; then
   _MS=1
 fi
