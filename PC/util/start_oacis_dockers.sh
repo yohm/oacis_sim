@@ -129,8 +129,8 @@ fi
 echo "--- system standby ---"
 url=http://localhost:3000/
 case `uname` in
-    "Linux" ) xdg-open ${url} ;;
-    "Darwin" ) open ${url} ;;
+    Linux  ) xdg-open ${url} ;;
+    Darwin ) open ${url} ;;
     MINGW* )
 	if [[ ! -z ${DOCKER_MACHINE_NAME} ]]; then
 	    url=http://`docker-machine ip`:3000/
