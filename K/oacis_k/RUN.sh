@@ -44,6 +44,9 @@ ssh oacis@${TARGHOST} -p ${TARGPORT} -A ssh K "/bin/bash ./setup_xsub_k.sh"
 echo "run oacis_start.sh on ${TARGHOST}"
 (ssh oacis@${TARGHOST} -p ${TARGPORT} -A /home/oacis/oacis_start.sh) &
 sleep 15
-echo
+
+# setup mdacp on K
+ssh oacis@${TARGHOST} -p ${TARGPORT} -A /home/oacis/mdacp/install_mdacp_K.sh
+ssh oacis@${TARGHOST} -p ${TARGPORT} -A "BUNDLE_PATH=/usr/local/bundle /home/oacis/oacis/bin/oacis_ruby /home/oacis/mdacp/register_mdacp_K.rb"
 
 exit 0

@@ -37,5 +37,12 @@ COPY _setup_xsub_k.sh /home/oacis/
 RUN tr -d \\r < /home/oacis/_setup_xsub_k.sh > /home/oacis/setup_xsub_k.sh \
  && chown oacis:oacis /home/oacis/setup_xsub_k.sh
 
+# put mdacp environment
+RUN mkdir /home/oacis/mdacp
+COPY mdacp/* /home/oacis/mdacp/
+RUN tr -d \\r < /home/oacis/mdacp/_install_mdacp_K.sh > /home/oacis/mdacp/install_mdacp_K.sh \
+ && tr -d \\r < /home/oacis/mdacp/_setup_mdacp_K.sh > /home/oacis/mdacp/setup_mdacp_K.sh \
+ && chown -R oacis:oacis /home/oacis/mdacp && chmod +x /home/oacis/mdacp/*.sh
+
 # start mongodb daemon and OACIS setup.
 CMD ["./oacis_setup.sh"]

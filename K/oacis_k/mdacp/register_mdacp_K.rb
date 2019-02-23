@@ -3,7 +3,7 @@ khost = Host.find_by_name("K")
 # simulator
 sim_params = {
   name: "MDACP_Langevin",
-  pre_process_script: "~/oacis_mdacp/prepare.sh"
+  pre_process_script: "~/oacis_mdacp/prepare.sh",
   command: "./xrun.sh",
   support_input_json: false,
   support_omp: true,
@@ -26,4 +26,3 @@ else
 end
 
 # analyzer
-# ... erased ...
