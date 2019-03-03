@@ -4,50 +4,37 @@ try:
 except:
     sys.stderr.write('import numpy failed, not installed.\n')
     sys.exit(1)
+try:
+    import matplotlib
+except:
+    sys.stderr.write('import matplotlib failed, not installed.\n')
+    sys.exit(1)
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 def plot_UVWP(dat):
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-
-    plt.title("Velocity U")
+    plt.title("Velocity")
     plt.xlabel("step")
-    plt.ylabel("U")
-    plt.plot(dat[:,0])
-    plt.savefig("U_step.png")
-    plt.clf()
-
-    plt.title("Velocity V")
-    plt.xlabel("step")
-    plt.ylabel("V")
-    plt.plot(dat[:,1])
-    plt.savefig("V_step.png")
-    plt.clf()
-
-    plt.title("Velocity W")
-    plt.xlabel("step")
-    plt.ylabel("W")
-    plt.plot(dat[:,2])
-    plt.savefig("W_step.png")
+    plt.plot(dat[:,0], label="U")
+    plt.plot(dat[:,1], label="V")
+    plt.plot(dat[:,2], label="W")
+    plt.legend()
+    plt.savefig("Velocity.png")
     plt.clf()
 
     plt.title("Pressure")
     plt.xlabel("step")
     plt.ylabel("P")
     plt.plot(dat[:,3])
-    plt.savefig("P_step.png")
+    plt.savefig("Pressure.png")
     plt.clf()
 
 def plot_ResE(dat):
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-
     plt.title("||Res. of Energy||")
     plt.xlabel("step")
     plt.ylabel("ResE")
     plt.plot(dat[:,0])
-    plt.savefig("ResE_step.png")
+    plt.savefig("ResEnergy.png")
     plt.clf()
 
 

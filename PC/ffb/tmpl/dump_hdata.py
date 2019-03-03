@@ -34,7 +34,7 @@ if __name__ == '__main__':
         sys.stderr.write("[Error] savetxt failed: %s\n" % ofname)
         sys.exit(3)
     try:
-        dat2 = h.dataset[0].data[1].array[:,19:]
+        dat = h.dataset[0].data[1].array[:,19:]
         np.savetxt(ofname2, dat, header='ResEnergy')
     except:
         sys.stderr.write("[Error] savetxt failed: %s\n" % ofname2)
