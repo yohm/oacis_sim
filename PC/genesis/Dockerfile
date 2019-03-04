@@ -15,12 +15,8 @@ RUN chmod +x /home/oacis/genesis/bin/* \
  && chown -R oacis:oacis /home/oacis/genesis \
  && echo "export PATH=\$PATH:/home/oacis/genesis/bin" >> /home/oacis/.bash_profile
 
-RUN mkdir -p /home/oacis/genesis/tutorial-1.1 \
- && (cd /home/oacis/genesis/tutorial-1.1; \
-     mkdir -p 1_setup 2_minimization 3_heating 4_equilibration 5_production)
-COPY tutorial-1.1/1_setup/* /home/oacis/genesis/tutorial-1.1/1_setup/
-COPY tutorial-1.1/2_minimization/* /home/oacis/genesis/tutorial-1.1/2_minimization/
-COPY tutorial-1.1/3_heating/* /home/oacis/genesis/tutorial-1.1/3_heating/
-COPY tutorial-1.1/4_equilibration/* /home/oacis/genesis/tutorial-1.1/4_equilibration/
-COPY tutorial-1.1/5_production/* /home/oacis/genesis/tutorial-1.1/5_production/
-RUN chown -R oacis:oacis /home/oacis/genesis/tutorial-1.1
+COPY data_dist.tgz /home/oacis/genesis/
+WORKDIR /home/oacis/genesis
+RUN tar xvfz data_dist.tgz \
+ && chown -R oacis:oacis /home/oacis/genesis/data \
+ && rm -f data_dist.tgz
