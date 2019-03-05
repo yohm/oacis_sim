@@ -19,21 +19,21 @@ def plot_energy(dat):
     plt.plot(dat[:,0], dat[:,2], label="Potential energy")
     plt.plot(dat[:,0], dat[:,3], label="Kinetic energy")
     plt.legend()
-    plt.savefig("energy.png")
+    plt.savefig("Energy.png")
     plt.clf()
 
-def plot_temp(dat):
+def plot_temperature(dat):
     plt.title("Temperature")
     plt.xlabel("step")
-    plt.plot(dat[:,0], dat[:,1])
-    plt.savefig("temperature.png")
+    plt.plot(dat[:,0], dat[:,1], label="Temperature")
+    plt.savefig("Temperature.png")
     plt.clf()
 
 def plot_volume(dat):
     plt.title("Volume")
     plt.xlabel("step")
-    plt.plot(dat[:,0], dat[:,1])
-    plt.savefig("volume.png")
+    plt.plot(dat[:,0], dat[:,1], label="Volume")
+    plt.savefig("Volume.png")
     plt.clf()
 
 
@@ -65,15 +65,15 @@ if __name__ == '__main__':
         sys.stderr.write("[Error] file read failed: %s\n" % fname2)
         sys.exit(2)
     try:
-        plot_temp(dat)
+        plot_temperature(dat)
     except:
-        sys.stderr.write("[Error] plot_temp failed.\n")
+        sys.stderr.write("[Error] plot_temperature failed.\n")
         sys.exit(3)
 
     try:
         dat = np.loadtxt(fname3, comments='#', delimiter=' ')
     except:
-        sys.stderr.write("[Error] file read failed: %s\n" % fname2)
+        sys.stderr.write("[Error] file read failed: %s\n" % fname3)
         sys.exit(2)
     try:
         plot_volume(dat)

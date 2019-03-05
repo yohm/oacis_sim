@@ -8,7 +8,7 @@ FFBソルバー入力ファイル生成機能
 import sys, os
 import json
 try:
-    from ffb_tmpl import *
+    from conv_tmpl import *
 except Exception as e:
     sys.stderr.write('ERR: %s\n' % str(e))
     sys.exit(2)

@@ -1,7 +1,7 @@
 #!/bin/bash
-
-export OMP_NUM_THREADS=1
-
+set -e
 rm -f run.rst run.dcd
-mpiexec -n 8 ./spdyn run.inp | tee run.out
-
+mpiexec -n $OACIS_MPI_PROCS ./spdyn run.inp | tee run.out
+python dump_tsd.py
+python genesis_plot_figs.py
+python genesis_post.py

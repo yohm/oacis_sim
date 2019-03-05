@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
     # clean-up
     os.system("rm -f *.sh *.py *.pyc")
-    os.system("rm -f spdyn run.inp.impl")
+    os.system("rm -f spdyn run.inp.tmpl")
     os.system("rm -rf 1_setup 4_equilibration")
 
     sys.exit(0)
