@@ -115,6 +115,14 @@ if [ ${_F} == "Y" ]; then
 fi
 
 # - genesis
+if [ ${_G} == "Y" ]; then
+    Y=`docker ps | grep 'oacis_sim/genesis' | wc -l`
+    if [ ${Y} -lt 1 ]; then
+	echo "= genesis docker container not runnning."
+    else
+	(cd oacis_pc; ./setup_genesis.sh)
+    fi
+fi
 
 # - mdacp
 if [ ${_M} == "Y" ]; then

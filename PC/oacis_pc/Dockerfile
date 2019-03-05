@@ -17,6 +17,11 @@ RUN mkdir -p /home/oacis/ffb && chown -R oacis:oacis /home/oacis/ffb
 COPY register_ffb.rb /home/oacis/ffb
 RUN chown oacis:oacis /home/oacis/ffb/register_ffb.rb
 
+# genesis
+RUN mkdir -p /home/oacis/genesis && chown -R oacis:oacis /home/oacis/genesis
+COPY register_genesis.rb /home/oacis/genesis
+RUN chown oacis:oacis /home/oacis/genesis/register_genesis.rb
+
 # mdacp
 RUN mkdir -p /home/oacis/mdacp && chown -R oacis:oacis /home/oacis/mdacp
 COPY register_mdacp.rb /home/oacis/mdacp

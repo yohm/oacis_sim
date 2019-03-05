@@ -16,7 +16,7 @@ case $1 in
     "genesis" )
 	if [ "$(mongo ${db_name} --eval 'printjson(db.hosts.count({"name": "genesis"}));' | tail -1 | tr -d '\r')" == "0" ]
 	then
-	    mongo ${db_name} --eval 'db.hosts.insert({"status" : "enabled", "port" : 22, "ssh_key" : "~/.ssh/id_rsa", "work_base_dir" : "~/genesis", "max_num_jobs" : 1, "polling_interval" : 5, "min_mpi_procs" : 1, "max_mpi_procs" : 4, "min_omp_threads" : 1, "max_omp_threads" : 4, "name" : "genesis", "hostname" : "genesis", "user" : "oacis"})'
+	    mongo ${db_name} --eval 'db.hosts.insert({"status" : "enabled", "port" : 22, "ssh_key" : "~/.ssh/id_rsa", "work_base_dir" : "~/genesis", "max_num_jobs" : 1, "polling_interval" : 5, "min_mpi_procs" : 8, "max_mpi_procs" : 8, "min_omp_threads" : 1, "max_omp_threads" : 4, "name" : "genesis", "hostname" : "genesis", "user" : "oacis"})'
 	fi
     ;;
     "mdacp" )

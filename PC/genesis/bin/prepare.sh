@@ -6,11 +6,11 @@ if [ ! "x$1" == "x" ]; then
 fi
 _T=`cat ${_IN} | python -m json.tool | awk -F':' '/temp_case/{print $2}' | sed -e 's/,//g' -e 's/ //g'`
 if [ "x${_T}" == "x" ]; then
-  _T=0
+  _T=3
 fi
 _P=`cat ${_IN} | python -m json.tool | awk -F':' '/pres_case/{print $2}' | sed -e 's/,//g' -e 's/ //g'`
 if [ "x${_P}" == "x" ]; then
-  _P=0
+  _P=3
 fi
 
 case ${_T} in
@@ -41,6 +41,7 @@ cp ${genesis_dir}/data/run.inp.tmpl ./
 
 cp ${genesis_dir}/bin/*.py ./
 cp ${genesis_dir}/bin/run.sh ./
+cp ${genesis_dir}/bin/spdyn ./
 python genesis_prep.py
 
 exit 0
