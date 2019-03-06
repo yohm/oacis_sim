@@ -18,11 +18,15 @@ OACISは、京のプリポストクラウド上の仮装マシンにDockerをイ
 
 シミュレータは京コンピュータで実行します。
 
+See [K/README.md](K/README.md)
+
 ## PC
 
 1台のPC上で、OACISとシミュレータを動作させるデモ環境です。
 
 OACISも各シミュレータも、それぞれPC上のDockerコンテナ上で稼働します。
+
+See [PC/README.md](PC/README.md)
 
 
 ## License
