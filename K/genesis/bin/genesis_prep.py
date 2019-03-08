@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-FFBソルバー入力ファイル生成機能
-  usage: ffb_prep.py [inputfile.json]
+GENESISソルバー入力ファイル生成機能
+  usage: genesis_prep.py [inputfile.json]
 """
 
 import sys, os
@@ -27,7 +27,7 @@ if __name__ == '__main__':
             pd = json.load(ijf)
     except:
         pass
-    if not ConvTmpl('PARMLES3X.tmpl', 'PARMLES3X', pd):
+    if not ConvTmpl('run.inp.tmpl', 'run.inp', pd):
         sys.exit(1)
 
     sys.exit(0)

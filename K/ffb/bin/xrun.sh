@@ -1,11 +1,10 @@
 . /work/system/Env_base
+module load Python/2.7.14-fujitsu-sparc64
 
-if [ $# -ne 5 ]; then
-  echo "invalid arguments" 1>&2
-  exit 1
-fi
-python pre_run.py $1 $2 $3 $4 $5
-mpiexec -ofout timeseries.dat ./les3x.mpi
-python post_run.py
+mpiexec -n $OACIS_MPI_PROCS -ofout-proc file_stdout ./les3x.mpi
+cat file_stdout.0 >> les3x.log.P0001
 
-exit 0
+python -B dump_hdata.py
+#python -B ffb_plot_figs.py
+python -B ffb_post.py
+exit $?
