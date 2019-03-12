@@ -69,6 +69,12 @@ scp $src/Dockerfile \
     $src/_setup_xsub_k.sh \
     id_rsa.K.pub ubuntu@${FIP}:./oacis_k/
 
+# copy register_*_K.rb
+ssh -A ubuntu@${FIP} mkdir oacis_k/ffb oacis_k/genesis oacis_k/mdacp
+scp $src/ffb/register_ffb_K.rb ubuntu@${FIP}:./oacis_k/ffb/
+scp $src/genesis/register_genesis_K.rb ubuntu@${FIP}:./oacis_k/genesis/
+scp $src/mdacp/register_mdacp_K.rb ubuntu@${FIP}:./oacis_k/mdacp/
+
 # copy install_oacis_on_docker.sh to the VM server
 scp *_oacis_on_docker.sh ubuntu@${FIP}:./
 
@@ -79,11 +85,16 @@ echo "ssh port 3000 forwarding starting"
 # convert CRLF -> LF
 ssh -n -T -A ubuntu@${FIP} 'tr -d \\r < oacis_k/_BUILD.sh > oacis_k/BUILD.sh && chmod +x oacis_k/BUILD.sh'
 ssh -n -T -A ubuntu@${FIP} 'tr -d \\r < oacis_k/_RUN.sh > oacis_k/RUN.sh && chmod +x oacis_k/RUN.sh'
+ssh -n -T -A ubuntu@${FIP} 'tr -d \\r < oacis_k/_setup_xsub_k.sh > oacis_k/setup_xsub_k.sh && chmod +x oacis_k/setup_xsub_k.sh'
 ssh -n -T -A ubuntu@${FIP} 'tr -d \\r < _install_oacis_on_docker.sh > install_oacis_on_docker.sh && chmod +x install_oacis_on_docker.sh'
 ssh -n -T -A ubuntu@${FIP} 'tr -d \\r < _start_oacis_on_docker.sh > start_oacis_on_docker.sh && chmod +x start_oacis_on_docker.sh'
 
 # exec install_oacis_on_docker.sh on the VM server
 ssh -n -T -A ubuntu@${FIP} ./install_oacis_on_docker.sh
+
+# install xsub on K (must be placed after exec install_oacis_on_docker.sh)
+ssh -n -T -A ubuntu@${FIP} scp oacis_k/setup_xsub_k.sh K:./
+ssh -n -T -A ubuntu@${FIP} ssh K "/bin/bash ./setup_xsub_k.sh"
 
 # exec start_oacis_on_docker.sh on the VM server
 ssh -n -T -A ubuntu@${FIP} ./start_oacis_on_docker.sh 2>&1 > start_oacis.log &
@@ -101,6 +112,7 @@ check_submitter() {
 
 tail -n 0 -f start_oacis.log | check_submitter
 
+### dont kill ssh-agent: oacis refers to that
 # kill ssh-agent if invoked
 #if [ ${_A} -lt 1 ]; then
 #    eval `ssh-agent -k`

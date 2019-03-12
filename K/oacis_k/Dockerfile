@@ -13,7 +13,7 @@ ENV SOCKS5_PASSWD=${SOCKS5_PASSWD}
 ARG KUSER="oacis"
 ENV KUSER=${KUSER}
 
-RUN apt-get -y install connect-proxy
+RUN apt-get -y install connect-proxy; exit 0
 
 # put oacis_*.sh
 USER root
