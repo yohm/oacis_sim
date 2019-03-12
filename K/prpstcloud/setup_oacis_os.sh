@@ -7,8 +7,12 @@ if [ -z ${OS_USERNAME} ]; then
     elif [ -f rccs-atd-openrc_v3.sh ]; then
 	. rccs-atd-openrc_v3.sh
     else
-	echo "both rccs-atd-openrc_v2.sh and rccs-atd-openrc_v3.sh does not exist, exit."
-	exit 1
+	echo "both rccs-atd-openrc_v2.sh and rccs-atd-openrc_v3.sh does not exist"
+        read -p "specify the OpenStack RC file of K prpst cloud: " osrc
+        if [ "x${osrc}" == "x" -o ! -f ${osrc} ]; then
+	    exit 1
+        fi
+        . ${osrc}
     fi
 fi
 

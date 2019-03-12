@@ -104,13 +104,15 @@ check_submitter() {
   while read i; do
     echo $i | grep -q "JobSubmitterWorker started"
     if [ $? = "0" ]; then
-      echo "OACIS started."
       killall tail
     fi
   done
 }
 
 tail -n 0 -f start_oacis.log | check_submitter
+
+sleep 5
+echo "OACIS started."
 
 ### dont kill ssh-agent: oacis refers to that
 # kill ssh-agent if invoked
