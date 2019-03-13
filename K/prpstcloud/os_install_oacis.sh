@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # unset https_proxy if set
-if [ ! -z ${https_proxy} ]; then
-  unset https_proxy
-fi
+unset https_proxy
+unset HTTPS_PROXY
 
 # source rccs-atd-openrc_v{2|3}.sh if need, and get the VM server name
 if [ -z ${OS_USERNAME} ]; then

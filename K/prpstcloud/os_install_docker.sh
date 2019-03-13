@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # unset https_proxy if set
-if [ ! -z ${https_proxy} ]; then
-    unset https_proxy
-fi
+unset https_proxy
+unset HTTPS_PROXY
 
 # source rccs-atd-openrc_v{2|3}.sh if need, and get the VM server name
 if [ -z ${OS_USERNAME} ]; then
@@ -31,7 +30,7 @@ if [ -z ${FIP} ]; then
 fi
 echo "Floating IP address of ${SRVNM} is ${FIP}"
 
-# invoke ssh-agen locally, and add private key of K
+# invoke ssh-agent locally, and add private key of K
 _A=`ssh-add -l | grep "id_rsa.K" | wc -l`
 if [ ${_A} -lt 1 ]; then
     kf="id_rsa.K"
