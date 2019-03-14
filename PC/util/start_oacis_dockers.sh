@@ -28,7 +28,7 @@ while getopts fgm-: opt; do
     esac
 done
 
-# oacis_sim base directory
+# oacis_sim/PC base directory
 _BD="`dirname $0`/.."
 cd ${_BD}
 

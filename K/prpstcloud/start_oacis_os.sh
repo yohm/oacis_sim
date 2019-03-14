@@ -34,5 +34,20 @@ if [ -d ${HOME}/.ssh ]; then
 	fi
 fi
 
-# and exec setup_oacis_os.sh
-exec ./setup_oacis_os.sh
+# oacis_sim/K/prpstcloud base directory
+_BD="`dirname $0`"
+cd ${_BD}
+
+# invoke setup_oacis_os.sh
+./setup_oacis_os.sh
+
+echo "+ invoking web browser ..."
+url=http://localhost:3000/
+case `uname` in
+    Linux  ) xdg-open ${url} ;;
+    Darwin ) open ${url} ;;
+    MINGW* ) start ${url} ;;
+esac
+
+exit 0
+
