@@ -34,7 +34,7 @@ Please enter your OpenStack Password for project rccs-atd as user <ユーザ名>
 
   ここで、京プリポスト向けクラウド環境用VPNのパスワードを入力します。
 
-5. "./os_setup.sh"を実行します。
+5. "./start_oacis_os.sh"を実行します。
 京プリポスト向けクラウド環境のOpenStackで、以下のVMがプロビジョニングされます。
  - OS: Ubuntu16.04_LTS
  - Flavor: A2.small
@@ -43,7 +43,7 @@ Please enter your OpenStack Password for project rccs-atd as user <ユーザ名>
   その後、プロビジョニングされたVM上にDocker CEがインストールされ、
   ここでoacis_dockerのコンテナ(oacis_K)が実行されます。
 
-  尚、"os_setup.sh"実行の途中、VMへのsshログインのために
+  尚、"start_oacis_os.sh"実行の途中、VMへのsshログインのために
   京コンピュータログイン用のssh秘密鍵のパスフレーズが聞かれます。ただし、事前にssh-agentに
   京の秘密鍵(id_rsa.K)を登録している場合は、パスフレーズは聞かれません。
 
@@ -57,9 +57,9 @@ Hostページを参照すると「K」というホスト名で京のログイン
 
 ## 終了方法
 OACISの使用を終了し、京プリポスト向けクラウド環境のOpenStack VMを削除するには、
-"rccs-atd-openrc_v2.sh"を実行したターミナルで"os_delete_server.sh"を実行します。
+"rccs-atd-openrc_v2.sh"を実行したターミナルで"stop_oacis_os.sh"を実行します。
 ```
-./os_delete_server.sh
+./stop_oacis_os.sh
 ```
 
 
