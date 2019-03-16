@@ -12,7 +12,7 @@ sim_params = {
   support_mpi: true,
   parameter_definitions: [
     {key: "MESHDV", type: "Integer", default: 1,
-     description: "Number of divided mesh data"}, 
+     description: "Number of divided mesh data (select a number from {1, 2, 4}, must be the same number as MPI procs)"}, 
     {key: "MESHSZ", type: "Integer", default: 1,
      description: "Mesh size of single node (1:small, 2:middle, 3:large)"}, 
     {key: "VISCM", type: "Float", default: 1E-3,

@@ -16,7 +16,7 @@ ENV KUSER=${KUSER}
 RUN if [ "x${SOCKS5_SERVER}" != "x" ]; then \
   apt-get -y install connect-proxy; exit 0; \
 fi
-RUN apt-get -y install psmisc
+#RUN apt-get -y install psmisc; exit 0
 
 # put oacis_*.sh
 USER root
