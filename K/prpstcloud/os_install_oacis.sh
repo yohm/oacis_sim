@@ -103,7 +103,7 @@ check_submitter() {
   while read i; do
     echo $i | grep -q "JobSubmitterWorker started"
     if [ $? = "0" ]; then
-      for p in `ps ax | grep -v ps | awk '/tail/{print $1}'`; do
+      for p in `ps ax | grep -v awk | awk '/tail/{print $1}'`; do
         kill $p
       done
     fi
