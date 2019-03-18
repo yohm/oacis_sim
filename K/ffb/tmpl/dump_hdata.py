@@ -16,7 +16,7 @@ if __name__ == '__main__':
     ofname2 = 'ResE_t.dat'
     if len(sys.argv) >= 2:
         if sys.argv[1] == '-h' or sys.argv[1] == '--help':
-            print('usage: python dump_hdata.py [HISTORY [UVW.dat [ResE.dat]]]')
+            print('usage: python dump_hdata.py [HISTORY [UVWP.dat [ResE.dat]]]')
             sys.exit(0)
         ifname = sys.argv[1]
     if len(sys.argv) >= 3:
