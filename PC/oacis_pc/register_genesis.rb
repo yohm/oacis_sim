@@ -15,7 +15,7 @@ sim_params = {
      description: "Temperature case (1:250K, 2:275K, 3:300K, 4:325K, 5:350K)"}, 
     {key: "pres_case", type: "Integer", default: 3,
      description: "Pressure case (1:0.8atm, 2:0.9atm, 3:1.0atm, 4:1.1atm, 5:1.2atm)"}, 
-    {key: "nsteps", type: "Integer", default: 2000,
+    {key: "nsteps", type: "Integer", default: 1000,
      description: "Number of MD steps"}, 
     {key: "timestep", type: "Float", default: 0.002,
      description: "timestep (ps)"}

@@ -12,9 +12,9 @@ sim_params = {
   support_mpi: true,
   parameter_definitions: [
     {key: "MESHDV", type: "Integer", default: 1,
-     description: "Number of divided mesh data (select a number from {1, 2, 4}, must be the same number as MPI procs)"}, 
+     description: "The overall size of the calculation area. Specify that the calculation should be performed in the area of MESHDV units with a rectangular unit with one side as the basic unit. (select a number from {1, 2, 4}, must be the same number as MPI procs)"}, 
     {key: "MESHSZ", type: "Integer", default: 1,
-     description: "Mesh size of single node (1:small, 2:middle, 3:large)"}, 
+     description: "Specify how many elements to divide a rectangular parallelepiped with one side at one. (1:23x23x23, 2:46x46x46, 3:92x92x92)"}, 
     {key: "VISCM", type: "Float", default: 1E-3,
      description: "Kinematic viscosity coefficient"}, 
     {key: "NTIME", type: "Integer", default: 100,
