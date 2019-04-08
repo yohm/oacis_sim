@@ -9,14 +9,11 @@ RUN apt-get update \
 
 # Install GENESIS and Tutorial
 USER root
-RUN mkdir -p /home/oacis/genesis/bin
-COPY bin/* /home/oacis/genesis/bin/
-RUN chmod +x /home/oacis/genesis/bin/* \
- && chown -R oacis:oacis /home/oacis/genesis \
- && echo "export PATH=\$PATH:/home/oacis/genesis/bin" >> /home/oacis/.bash_profile
-
-COPY data_dist.tgz /home/oacis/genesis/
+COPY genesis_dist.tgz /home/oacis/genesis/
 WORKDIR /home/oacis/genesis
-RUN tar xvfz data_dist.tgz \
- && chown -R oacis:oacis /home/oacis/genesis/data \
- && rm -f data_dist.tgz
+RUN tar xvfz genesis_dist.tgz \
+ && chown -R oacis:oacis /home/oacis/genesis \
+ && chmod +x /home/oacis/genesis/bin/* \
+ && echo "export PATH=\$PATH:/home/oacis/genesis/bin" >> /home/oacis/.bash_profile \
+ && rm -f genesis_dist.tgz
+
