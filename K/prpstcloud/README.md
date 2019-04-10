@@ -24,12 +24,12 @@ Horizon Service(OpenStackのダッシュボード)に接続します。
 
 3. Horizonの[プロジェクト][コンピュート][アクセスとセキュリティー]の
 ページの[APIアクセス]タブを開き、[OpenStack RC v2.0ファイルのダウンロード]
-ポタンをクリックし、"rccs-atd-openrc_v2.sh"をダウンロードします(v3でも構いません)。
+ポタンをクリックし、"<グループ名>-openrc.sh"をダウンロードします(v3.0でも構いません)。
 
-4. "rccs-atd-openrc_v2.sh"を、以下のように実行します。
+4. "<グループ名>-openrc.sh"を、以下のように実行します。
 ```
-. rccs-atd-openrc_v2.sh
-Please enter your OpenStack Password for project rccs-atd as user <ユーザ名>:
+. <グループ名>-openrc.sh
+Please enter your OpenStack Password for project <グループ名> as user <ユーザ名>:
 ```
 
   ここで、京プリポスト向けクラウド環境用VPNのパスワードを入力します。

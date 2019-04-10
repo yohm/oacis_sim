@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# source rccs-atd-openrc_v{2|3}.sh if need, and get the VM server name
+# source *-openrc.sh if need, and get the VM server name
 if [ -z ${OS_USERNAME} ]; then
-    if [ -f rccs-atd-openrc_v2.sh ]; then
-	. rccs-atd-openrc_v2.sh
-    elif [ -f rccs-atd-openrc_v3.sh ]; then
-	. rccs-atd-openrc_v3.sh
+    _RC=`ls -1 *-openrc.sh | wc -l`
+    if [ ${_RC} -gt 0 ]; then
+	. `ls -1 *-openrc.sh | head -1`
     else
-	echo "both rccs-atd-openrc_v2.sh and rccs-atd-openrc_v3.sh does not exist"
+	echo "no *-openrc.sh found."
         read -p "specify the OpenStack RC file of K prpst cloud: " osrc
         if [ "x${osrc}" == "x" -o ! -f ${osrc} ]; then
 	    exit 1
